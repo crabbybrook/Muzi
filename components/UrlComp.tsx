@@ -17,6 +17,8 @@ export type allVideos = {
     id: string,
     videoId: string,
     active: boolean,
+    thumbnailURL: string,
+    title: string
 }
 
 export function UrlComp(props: SpaceId) {

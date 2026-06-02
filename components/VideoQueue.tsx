@@ -4,7 +4,6 @@ import { useAllVideos } from "@/store/useAllVideos"
 import { VideoCard } from "./VideosCard"
 import { useEffect } from "react"
 import axios from "axios"
-import { allVideos } from "./UrlComp"
 
 interface Sluggish{
     spaceId: string
