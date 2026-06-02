@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Provider{
+  Google
+  Youtube
+  Spotify
+}
+
+model User{
+  id String @id @unique @default(uuid())
+  email String @unique
+  provider Provider
+  space Space[]
+  member SpaceMember[]
+}
+
+model Space{
+  id String @id @unique @default(uuid())
+  name String
+  shareToken String @unique
+  streams Streams[]
+  member SpaceMember[]
+  userId String
+  user User @relation(fields: [userId], references: [id])
+}
+
+model SpaceMember {
+  id String @id @unique @default(uuid())
+  userId String
+  spaceId String
+  user User @relation(fields: [userId], references: [id])
+  space Space @relation(fields: [spaceId], references: [id])
+  @@unique([userId, spaceId])
+}
+
+model Streams{
+  id String @id @unique @default(uuid())
+  url String
+  videoId String
+  active Boolean @default(false)
+  title String @unique
+  thumbnailURL String
+  provider Provider
+  spaceId String
+  space Space @relation(fields: [spaceId], references: [id])
+}
