@@ -50,7 +50,7 @@ model Streams{
   url String
   videoId String
   active Boolean @default(false)
-  title String @unique
+  title String 
   thumbnailURL String
   provider Provider
   spaceId String

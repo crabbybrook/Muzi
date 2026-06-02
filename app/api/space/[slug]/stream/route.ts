@@ -45,18 +45,6 @@ export async function POST(req: NextRequest) {
 
         const metadata = await getYoutubeMetadata(body.url)
 
-        const streamFound = await client.streams.findFirst({
-            where: {
-                title: metadata.title
-            }
-        })
-
-        if (streamFound) {
-            return NextResponse.json({
-                message: `${streamFound.title} already exists`
-            })
-        }
-
         await client.streams.create({
             data: {
                 url: body.url,
