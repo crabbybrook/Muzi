@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 
         const metadata = await getYoutubeMetadata(body.url)
 
-        const streamFound = await client.streams.findUnique({
+        const streamFound = await client.streams.findFirst({
             where: {
                 title: metadata.title
             }
