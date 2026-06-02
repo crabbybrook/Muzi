@@ -1,4 +1,4 @@
-import { allVideos } from "@/components/VideoPlay";
+import { allVideos } from "@/components/UrlComp";
 import { create } from "zustand";
 
 interface Videos{

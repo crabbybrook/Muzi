@@ -4,7 +4,6 @@ import Button from "./Button";
 import { useVideoId } from "@/store/useVideoId";
 import axios from "axios";
 import { useAllVideos } from "@/store/useAllVideos";
-import { useRouter } from "next/navigation";
 
 
 interface Video {
@@ -13,7 +12,6 @@ interface Video {
 
 export function VideoPlay(props: Video) {
     const { spaceId } = props
-    const router = useRouter()
     const videoId = useVideoId((state) => state.videoId)
     const setvideoId = useVideoId((state) => state.setVideoId)
     const activeFalse = useAllVideos((state) => state.activeFalse)
