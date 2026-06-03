@@ -23,12 +23,14 @@ export function Forms() {
         router.refresh()
     }
 
-    return <div className="border border-white bg-black flex justify-center w-120 rounded-2xl h-80">
-        <div className="relative">
-            <div className="absolute top-2 left-112 cursor-pointer" onClick={() => { setSpaceOpen(false) }}>
+    return <div className="border border-white bg-black flex justify-center p-10 relative">
+        <div className="absolute right-1 top-2">
+            <div className="cursor-pointer" onClick={() => { setSpaceOpen(false) }}>
                 <Cross size="sm" />
             </div>
         </div>
+            
+        
         <div className="flex flex-col w-full justify-center items-center gap-5">
             <div className="w-80">
                 <input className="border border-gray-400 rounded-2xl p-4 w-full" placeholder="Name your space" ref={inpRef}></input>
