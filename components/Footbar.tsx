@@ -10,10 +10,5 @@ export function Footbar(){
         <div className="text-xs">
             © {year} Muzi. All rights reserved.
         </div>
-
-        <div className="text-xs flex gap-5">
-            <div>Spaces</div>
-            <div>Streams</div>
-        </div>
     </div>
 }
