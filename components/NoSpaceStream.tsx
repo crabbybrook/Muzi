@@ -16,8 +16,8 @@ export default function NoSpaceStream(){
                 <EmptyBox size="md"/>
             </div>
             <div className="font-bold">You have no spaces</div>
-            <div className="flex gap-1 pt-1 justify-center items-center">
-                Tap <span className="font-bold text-xl">+</span> button below to create a new space
+            <div className="pt-1 text-center md:flex md:justify-center md:items-center md:gap-1">
+                Tap <span className="font-bold text-xl text-center">+</span> button below to create a new space
             </div>
 
             <div className="mt-3">
