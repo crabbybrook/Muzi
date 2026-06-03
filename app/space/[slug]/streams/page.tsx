@@ -16,7 +16,7 @@ export default async function Streams({params}: {params: Sluggish}) {
     return <div className="mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 border-2 w-full">
            <div className="flex-col p-3">
-                <div className="text-2xl font-bold flex justify-between items-center">
+                <div className="text-2xl font-bold flex justify-between items-center text-white">
                     Upcoming Songs
                 </div>
                 <div>
@@ -28,7 +28,7 @@ export default async function Streams({params}: {params: Sluggish}) {
            <div className="p-3 w-full">
                 <div className="flex-col">
                     <div className="flex justify-between items-center">
-                        <div className="text-2xl font-bold">
+                        <div className="text-2xl font-bold text-white">
                             Add a song
                         </div>
                         <ShareComp spaceId={slug}/>

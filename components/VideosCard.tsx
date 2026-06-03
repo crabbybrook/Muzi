@@ -14,7 +14,7 @@ export function VideoCard(props: VideoDetails){
             </div>
 
             <div className="grow">
-                <div className="font-semibold text-sm">{title}</div>
+                <div className="font-semibold text-sm text-white">{title}</div>
             </div>
         </div>  
     </div>

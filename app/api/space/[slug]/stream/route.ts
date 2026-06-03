@@ -19,7 +19,6 @@ async function getYoutubeMetadata(url: string) {
 
 export async function GET(req:NextRequest, {params}: {params: Promise<{slug: string}>}){
     const {slug} = await params
-    console.log(slug)
     const allStreams = await client.streams.findMany({
         where: {
             spaceId: slug
@@ -32,8 +31,9 @@ export async function GET(req:NextRequest, {params}: {params: Promise<{slug: str
 }
 
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, {params}: {params: Promise<{slug: string}>}) {
     const body = await req.json()
+    const {slug} = await params
     try {
         const match = body.url.match(regex)
 
@@ -44,6 +44,19 @@ export async function POST(req: NextRequest) {
         }
 
         const metadata = await getYoutubeMetadata(body.url)
+
+        const streamFound = await client.streams.findFirst({
+            where:{
+                spaceId: slug,
+                title: metadata.title
+            }
+        })
+
+        if(streamFound){
+            return NextResponse.json({
+                message: `${streamFound.title} already exists`
+            })
+        }
 
         await client.streams.create({
             data: {
@@ -67,13 +80,15 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export async function PUT(req: NextRequest) {
+export async function PUT(req: NextRequest, {params}: {params: Promise<{slug: string}>}) {
     const body = await req.json()
+    const {slug} = await params
 
     const [updatedSong, song] = await client.$transaction([
         client.streams.update({
             where: {
-                id: body.streamId
+                id: body.streamId,
+                spaceId: slug
             },
             data: {
                 active: true
@@ -82,7 +97,7 @@ export async function PUT(req: NextRequest) {
 
         client.streams.findMany({
             where: {
-                spaceId: body.spaceId
+                spaceId: slug
             }
         })
     ])

@@ -19,7 +19,6 @@ export function VideoPlay(props: Video) {
     const setActiveFalse = useAllVideos((state) => state.setActiveFalse)
     const setActiveTrue = useAllVideos((state) => state.setActiveTrue)
     async function playNext() {
-        console.log(activeFalse)
         const nextVideo = activeFalse[0]
         const res = await axios.put(`${process.env.NEXT_PUBLIC_SITE_URL}/api/space/${spaceId}/stream`, {
             streamId: nextVideo.id
@@ -27,7 +26,6 @@ export function VideoPlay(props: Video) {
         setActiveTrue({ id: res.data.activeTrue.videoId, active: res.data.activeTrue.active })
         setActiveFalse([...res.data.activeFalse])
         setvideoId(res.data.activeTrue.videoId)
-        console.log('after'+activeFalse)
 
     }
 
@@ -42,6 +40,6 @@ export function VideoPlay(props: Video) {
             />
                 : <p className="text-center pu-8 text-gray-400"> No video playing </p>}
         </div>
-        <Button title="Play Next" color="primary-5" iconFront={<Play size="sm" />} onClick={playNext} />
+        <Button title="Play Next" color="primary-5" iconFront={<Play size="sm" />} onClick={async ()=>{ await playNext()}} />
     </div>
 }

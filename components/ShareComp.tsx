@@ -19,7 +19,7 @@ export async function ShareComp(props: Sluggish){
     const {spaceId} = props
     const token = await shareToken(spaceId)
     if(!token){
-        return <div>
+        return <div className="flex text-center text-white text-4xl font-bold">
             You are not invited
         </div>
     }
